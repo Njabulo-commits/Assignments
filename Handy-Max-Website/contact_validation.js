@@ -5,9 +5,12 @@ const email = document.getElementById('email');
 const message = document.getElementById('message');
 
 form.addEventListener('submit', e => {
-	e.preventDefault();
 	
-	checkInputs();
+	if (checkInputs()) { 
+        form.submit();  
+    }else{
+		e.preventDefault();
+	}
 });
 
 function checkInputs() {
@@ -20,11 +23,13 @@ function checkInputs() {
 	// Check if first name and last name was entered
 	if(firstNameValue === '') {
 		setErrorFor(firstName, 'First Name cannot be blank');
+        isValid = false;
 	} else {
 		setSuccessFor(firstName);
 	}
 	if(lastNameValue === '') {
 		setErrorFor(lastName, 'Surname cannot be blank');
+        isValid = false;
 	} else {
 		setSuccessFor(lastName);
 	}
@@ -32,17 +37,21 @@ function checkInputs() {
 	// Check if valid email was entered
 	if(emailValue === '') {
 		setErrorFor(email, 'Email cannot be blank');
+        isValid = false;
 	} else if (!isEmail(emailValue)) {
 		setErrorFor(email, 'Not a valid email');
+        isValid = false;
 	} else {
 		setSuccessFor(email);
 	}
 
     if(messageValue === '') {
 		setErrorFor(message, 'Message cannot be blank');
+        isValid = false;
 	} else {
 		setSuccessFor(message);
 	}
+    return isValid;
 }
 
 function setErrorFor(input, message) {
