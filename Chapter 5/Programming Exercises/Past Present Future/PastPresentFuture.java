@@ -41,11 +41,11 @@ public class PastPresentFuture {
         else{
             if(month < currentMonth)
             {
-                System.out.println("The date entered is in an earlier month this year");
+                System.out.println("The date entered(" + day + "/" + month + "/" + year + ") is in an earlier month this year");
             } else if (month > currentMonth) {
-                System.out.println("The date entered is in a later month this year");
+                System.out.println("The date entered(" + day + "/" + month + "/" + year + ") is in a later month this year");
             } else{
-                System.out.println("The date entered is in this month");
+                System.out.println("The date (" + day + "/" + month + "/" + year + ") is in this month");
             }
         }
 
