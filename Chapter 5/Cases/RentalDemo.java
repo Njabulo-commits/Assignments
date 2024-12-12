@@ -24,17 +24,19 @@ public class RentalDemo {
         displayDetails(rental3);
 
         // Display which user has the longest rental time
-        compareRentals(rental1, rental2);
-        compareRentals(rental1, rental3);
-        compareRentals(rental2, rental3);
+        compareAndDisplay(rental1, rental2);
+        compareAndDisplay(rental1, rental3);
+        compareAndDisplay(rental2, rental3);
     }
 
     // Method to display rental details
     public static void displayDetails(Rental rental) {
+        System.out.println("---------------------------------------------");
         System.out.println("Contract Number: " + rental.getContractNumber());
         System.out.println("Hours: " + rental.getHours());
         System.out.println("Extra Minutes: " + rental.getExtraMinutes());
         System.out.println("Price: $" + rental.getPrice());
+        System.out.println("---------------------------------------------");
     }
 
     public static String getContractNumber(){
@@ -53,18 +55,24 @@ public class RentalDemo {
         return totalMinutes;
     }
 
-    public static void compareRentals(Rental obj1, Rental obj2){
-        int minutes1 = obj1.getHours() * Rental.MINUTES_PER_HOUR + obj1.getExtraMinutes();
-        int minutes2 = obj2.getHours() * Rental.MINUTES_PER_HOUR + obj2.getExtraMinutes();
-        if(minutes1 > minutes2){
-            System.out.println("Contract number " + obj1.getContractNumber() + " has the longest rental time.");
+    // Compare two rental object
+    public static Rental compareRentals(Rental rental1, Rental rental2){
+        int rentalTime1 = rental1.getHours() * Rental.MINUTES_PER_HOUR + rental1.getExtraMinutes();
+        int rentalTime2 = rental2.getHours() * Rental.MINUTES_PER_HOUR + rental2.getExtraMinutes();
+        if(rentalTime1 > rentalTime2){
+            return rental1;
         }
-        else if(minutes1 == minutes2){
-            System.out.println("The both users have the same rental time");
-        }
-        else{
-            System.out.println("Contract number " + obj2.getContractNumber() + " has the longest rental time.");
+        else {
+            return rental2;
         }
     }
-}
 
+    // Compare rentals and display the longer rental
+    public static void compareAndDisplay(Rental rental1, Rental rental2){
+        Rental longerRental = compareRentals(rental1, rental2);
+        System.out.println("\nComparing rentals:");
+        displayDetails(rental1);
+        displayDetails(rental2);
+        System.out.println("The longer rental is: " + longerRental.getContractNumber());
+    }
+}
