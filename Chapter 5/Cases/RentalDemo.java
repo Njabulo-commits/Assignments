@@ -9,6 +9,8 @@
 */
 import java.util.Scanner;
 public class RentalDemo {
+    private static final Scanner input = new Scanner(System.in);
+  
     public static void main(String[] args) {
         System.out.println("Welcome to Sunshine Seashore Supplies!");
         Rental rental1 = new Rental(getContractNumber(), getMinutes());
@@ -40,15 +42,13 @@ public class RentalDemo {
     }
 
     public static String getContractNumber(){
-        Scanner input = new Scanner(System.in);
         // Get contract number using user input
         System.out.print("Enter contract number: ");
-        String contractNumber = input.nextLine();
+        String contractNumber = input.nextLine().trim();
         return contractNumber;
     }
 
     public static int getMinutes(){
-        Scanner input = new Scanner(System.in);
         // Get rental duration using user input
         System.out.println("Enter rental duration in minutes:");
         int totalMinutes = input.nextInt();
